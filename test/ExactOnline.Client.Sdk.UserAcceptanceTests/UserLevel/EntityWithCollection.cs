@@ -25,7 +25,7 @@ namespace ExactOnline.Client.Sdk.UserAcceptanceTests.UserLevel
 			var newInvoice = new SalesInvoice
 			{
 				Currency = "EUR",
-				OrderDate = new DateTime(2012, 10, 26),
+				OrderDate = new DateTime(2020, 10, 26),
 				InvoiceTo = customerId,
 				Journal = "70",
 				OrderedBy = customerId,

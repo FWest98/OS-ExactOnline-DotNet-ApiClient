@@ -45,13 +45,14 @@ namespace ExactOnline.Client.Sdk.Helpers
         {
             var oldCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            string token = string.Empty;
+            var token = string.Empty;
             try
             {
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(response);
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, JContainer>>(response);
                 var innerPart = dict["d"];
-                if (innerPart.ContainsKey("__next")) {
-                    var next = innerPart["__next"].ToObject<string>();
+
+                if (innerPart is JObject obj && obj.ContainsKey("__next")) {
+                    var next = obj["__next"].ToObject<string>();
 
                     // Skiptoken has format "$skiptoken=xyz" in the url and we want to extract xyz.
                     var match = Regex.Match(next ?? "", @"\$skiptoken=([^&#]*)");
@@ -80,9 +81,9 @@ namespace ExactOnline.Client.Sdk.Helpers
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             try
             {
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(response);
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, JContainer>>(response);
                 var innerPart = dict["d"];
-                if(!innerPart.ContainsKey("results")) throw new InvalidDataException("JSON does not contain a result");
+                if(innerPart is JObject obj && !obj.ContainsKey("results")) throw new InvalidDataException("JSON does not contain a result");
 
                 var results = NormalizeJson(innerPart);
                 return results.ToString(Formatting.None);
