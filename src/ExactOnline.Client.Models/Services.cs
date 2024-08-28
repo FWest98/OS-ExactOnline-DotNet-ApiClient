@@ -62,6 +62,7 @@ public class Services
         ServicesDictionary.Add(typeof(AssetGroup).FullName, "Assets/AssetGroups");
         ServicesDictionary.Add(typeof(DepreciationMethod).FullName, "Assets/DepreciationMethods");
         ServicesDictionary.Add(typeof(Budget).FullName, "Budget/Budgets");
+        ServicesDictionary.Add(typeof(Bulk.Account).FullName, "Bulk/CRM/Accounts");
         ServicesDictionary.Add(typeof(Bulk.Document).FullName, "Bulk/Documents/Documents");
         ServicesDictionary.Add(typeof(Bulk.DocumentAttachment).FullName, "Bulk/Documents/DocumentAttachments");
         ServicesDictionary.Add(typeof(Bulk.FinancialTransactionLine).FullName, "Bulk/Financial/TransactionLines");
@@ -286,4 +287,3 @@ public class Services
         ServicesDictionary.Add(typeof(RequestAttachment).FullName, "Workflow/RequestAttachments");
     }
 }
-
