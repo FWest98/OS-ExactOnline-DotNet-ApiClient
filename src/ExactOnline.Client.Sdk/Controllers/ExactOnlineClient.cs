@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ExactOnline.Client.Models.Current;
 using ExactOnline.Client.Sdk.Delegates;
 using ExactOnline.Client.Sdk.Helpers;
+using ExactOnline.Client.Sdk.Interfaces;
 using ExactOnline.Client.Sdk.Models;
 
 namespace ExactOnline.Client.Sdk.Controllers
@@ -159,6 +160,10 @@ namespace ExactOnline.Client.Sdk.Controllers
 			var controller = _controllers.GetController<T>();
 			return new ExactOnlineQuery<T>(controller);
 		}
+
+        public Controller<T> ControllerFor<T>() where T : class {
+            return _controllers.GetController<T>() as Controller<T>;
+        }
 
 		#endregion
 	}
